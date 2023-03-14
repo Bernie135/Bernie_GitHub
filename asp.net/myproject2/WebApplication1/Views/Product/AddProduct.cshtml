@@ -1,0 +1,25 @@
+﻿@model WebApplication1.Models.ViewModels.AddProductViewModel;
+
+<form asp-action="AddProduct" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" value="1"/>
+
+    <label asp-for="Name"></label>
+    <input type="text" asp-for="Name" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+    <br/>
+
+    <label asp-for="Price"></label>
+    <input type="text" asp-for="Price" />
+    <span asp-validation-for="Price" class="text-danger"></span>
+    <br/>
+    <label asp-for="File"></label>
+    <input asp-for="File" type="file"/>
+
+    <input type="submit" value="送出"/>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

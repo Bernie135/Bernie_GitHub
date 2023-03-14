@@ -1,0 +1,25 @@
+﻿@model myproject1.Models.IronMode
+@{
+    Layout = null;
+}
+<form asp-action="Createmember">
+        <div asp-validation-summary="All"></div>
+        <div>
+            <label asp-for="Name"></label>
+            <input asp-for="Name" />
+            <span asp-validation-for="Name" data-valmsg-replace="false">*</span>
+        </div>
+        <div>
+            <label asp-for="Age"></label>
+            <input asp-for="Age" />
+            <span asp-validation-for="Age" data-valmsg-replace="false">*</span>
+        </div>
+        <div>
+            <label asp-for="Address"></label>
+            <input asp-for="Address" />
+            <span asp-validation-for="Address" data-valmsg-replace="false">*</span>
+        </div>
+        <div>
+            <input type="submit" value="Save" />
+        </div>
+    </form>

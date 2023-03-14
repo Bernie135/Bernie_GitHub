@@ -1,0 +1,12 @@
+﻿@model Prodect;
+
+<form asp-action="UpdateProduct">
+    <input type="hidden" asp-for="Id" />
+    <label asp-for="Name"></label>
+    <input type="text" asp-for="Name" />
+
+    <label asp-for="Price"></label>
+    <input type="text" asp-for="Price" />
+    
+    <input type="submit" value="送出"/>
+</form>

@@ -1,0 +1,16 @@
+﻿@model Prodect;
+
+@if(Model== null)
+{
+    <p>沒有此刪除</p>
+}else
+{
+    @Model.Id
+    @Model.Name
+    @Model.Price
+    <br/>
+    <form asp-action="TODeleteProduct">
+        <input type="hidden" asp-for="Id"/>
+        <input type="submit" class=" btn btn-primary" value=" 確定刪除" />
+    </form>
+}

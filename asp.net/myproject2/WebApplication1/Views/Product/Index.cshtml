@@ -1,0 +1,10 @@
+﻿@model List<Prodect>;
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Product 列表 </p>
+<a asp-area="" asp-controller="Product" asp-action="AddProduct" class="btn btn-primary">新增</a>
+<br>
+<partial name="_ProductListPartial" model="Model" />
