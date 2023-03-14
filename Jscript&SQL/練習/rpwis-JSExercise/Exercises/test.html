@@ -1,0 +1,138 @@
+<script type="text/javascript"> 
+ 
+   
+  /**選中的元素向右移動**/ 
+  function moveRight() 
+  { 
+     
+      //得到第一個select物件 
+    var selectElement = document.getElementById("first"); 
+    var optionElements = selectElement.getElementsByTagName("option"); 
+    var len = optionElements.length; 
+   
+ 
+    if(!(selectElement.selectedIndex==-1))  //如果沒有選擇元素，那麼selectedIndex就為-1 
+    { 
+       
+      //得到第二個select物件 
+      var selectElement2 = document.getElementById("secend"); 
+   
+        // 向右移動 
+        //for(var i=0;i<len ;i++) 
+        //{ 
+          selectElement2.appendChild(optionElements[selectElement.selectedIndex]); 
+        //} 
+    } else 
+    { 
+      alert("您還沒有選擇需要移動的元素！"); 
+    } 
+  } 
+   
+  //移動所有的到右邊 
+  function moveAll() 
+  { 
+    //得到第一個select物件 
+    var selectElement = document.getElementById("first"); 
+    var optionElements = selectElement.getElementsByTagName("option"); 
+    var len = optionElements.length; 
+    //alert(len); 
+   
+    //將第一個selected中的陣列翻轉 
+    var firstOption = new Array(); 
+    for(var k=len-1;k>=0;k--) 
+    { 
+      firstOption.push(optionElements[k]); 
+   
+    } 
+    var lens = firstOption.length; 
+      //得到第二個select物件 
+    var selectElement2 = document.getElementById("secend"); 
+    for(var j=lens-1;j>=0;j--) 
+    { 
+      selectElement2.appendChild(firstOption[j]); 
+    } 
+  } 
+   
+  //移動選中的元素到左邊 
+  function moveLeft() 
+  { 
+    //首先得到第二個select物件 
+    var selectElement = document.getElementById("secend"); 
+    var optionElement = selectElement.getElementsByTagName("option"); 
+    var len = optionElement.length; 
+     
+    //再次得到第一個元素 
+    if(!(selectElement.selectedIndex==-1)) 
+    { 
+      var firstSelectElement = document.getElementById("first"); 
+      for(i=0;i<len;i++) 
+      { 
+        firstSelectElement.appendChild(optionElement[selectElement.selectedIndex]);//被選中的那個元素的索引 
+      } 
+    }else 
+    { 
+      alert("您還沒有選中要移動的專案!"); 
+    } 
+  } 
+   
+  //全部向左移 
+  function moveAllLeft() 
+  { 
+    var selectElement = document.getElementById("secend"); 
+    var optionElements = document.getElementsByTagName("option"); 
+    var len = optionElements.length; 
+    var optionEls = new Array(); 
+    for(var i=len-1;i>=0;i--) 
+    { 
+      optionEls.push(optionElements[i]); 
+    } 
+    var lens = optionEls.length; 
+     
+    var firstSelectElement = document.getElementById("first"); 
+    for(var j=lens-1;j>=0;j--) 
+    { 
+      firstSelectElement.appendChild(optionEls[j]); 
+    } 
+  } 
+</script>
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>無標題文件</title> 
+<style type="text/css"> 
+  .select_move { margin:0px auto; width:206px; height:140px; margin-top:300px;} 
+  .select_move_1 { float:left;} 
+  .select_move_2 { float:left;} 
+  .select_move_3 { float:left;} 
+</style> 
+</head> 
+ 
+<body> 
+  <div class="select_move"> 
+   
+    <div class="select_move_1"> 
+     <select name="first" size="10" id="first" multiple="multiple"> 
+      <option value="寶馬">寶馬</option> 
+      <option value="豐田">豐田</option> 
+      <option value="奧迪">奧迪</option> 
+      <option value="凱迪拉克">凱迪拉克</option> 
+      <option value="現代">現代</option> 
+      <option value="賓士">賓士</option> 
+      <option value="法拉利">法拉利</option> 
+       
+     </select> 
+    </div> 
+     <div class="select_move_2"> 
+        <input type="button" value="------>" onclick="moveRight()"/><br /> 
+        <input type="button" value="===>" onclick="moveAll()" /><br /> 
+        <input type="button" value="<------" onclick="moveLeft()"/><br /> 
+        <input type="button" value="<===" onclick="moveAllLeft()"/> 
+     </div> 
+    <div class="select_move_3"> 
+       <select size="10" id="secend" multiple="multiple"> 
+       </select> 
+    </div> 
+  </div> 
+   
+</body> 
+</html>

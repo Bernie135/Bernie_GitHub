@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+	<link href="../Style/style.css" rel="stylesheet" type="text/css" />
+	<style type="text/css"> 
+		.currStyle { 
+			background-color:#ffffff;
+			width:300px;
+			height:160px;
+			border:1px;
+			text-align:center;
+			line-height:160px;
+			font-size:15px;
+		} 
+		.currBStyle { 
+			border-width: 2px; 
+			border-style: solid; 
+			border-color: black;
+		} 
+		.spBStyle { 
+			border-width: 2px; 
+			border-style: solid; 
+			border-color: red;
+		} 
+		.xStyle { 
+			background-color:#40ff40;
+			font-size:15px;
+		}
+		.yStyle { 
+			background-color:#7f7fff;
+			font-size:20px;
+		}
+		.zStyle { 
+			background-color:#bfbfbf;
+			font-size:25px;
+		}
+	</style> 
+	<script src="../Scripts/jquery-2.1.4.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+		
+		});
+	</script>
+</head>
+<body>
+	<div class="container2">
+		<div class="content">
+			<p>
+				請實做一簡易卡片產生器：
+				<li>當選擇樣式1、2、3時，卡片會分別套用xStyle、yStyle、zStyle</li>
+				<li>當按下"鎖定文字"按鈕時，會將"卡片1文字"框Disabled，同時將"卡片1文字"框內容寫入卡片一，按鈕文字變為"解除鎖定"</li>
+				<li>當按下"解除鎖定"，才可重新編輯文字框</li>
+				<li>按下變更框線，卡片1可以在紅黑兩種框線顏色中切換</li>
+				<li>按下卡片複製，會將卡片1的所有屬性及文字複製一份至卡片2</li>
+			</p>
+			<table>
+				<tr>
+					<td>卡片1樣式：<input name="cardColor" type="radio" value="1" />樣式1　
+								   <input name="cardColor" type="radio" value="2" />樣式2　
+								   <input name="cardColor" type="radio" value="3" />樣式3　
+					</td>
+				</tr>
+				<tr>
+					<td>卡片1文字：<input id="text" type="text" value=""></td>
+					<td><input id="button1" type="button" value=" 鎖定文字 " /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input id="button2" type="button" value=" 變更框線 " /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input id="button3" type="button" value=" 卡片複製 " /></td>
+				</tr>
+			</table>
+			卡片1
+			<div id="card" class="currStyle currBStyle">
+			</div>
+			卡片2
+			<div id="card2" class="currStyle currBStyle">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

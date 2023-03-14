@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+	<link href="../Style/style.css" rel="stylesheet" type="text/css" />
+	<style>
+		img {
+			position : absolute;
+		}
+		#leftSide {
+			position : absolute;
+			width : 300px;
+			height : 300px;
+		}
+		#rightSide {
+			position : absolute;
+			width : 300px;
+			height : 300px;
+			left : 300px;
+			border-left : 1px solid black;
+		}
+	</style>
+	<script src="../Scripts/jquery-2.1.4.js"></script>
+	<script type="text/javascript">
+		<!-- initial parameter -->
+		var numberOfLogos = 2;
+		var imgHeight = 30;
+		var imgWeidth = 30;
+		var divHeight = 300;
+		var divWeidth = 300;
+		var imagePath = "../Images/en_logo.png";
+		
+		$(document).ready(function(){
+			$("#restart").click(function(){
+			});
+			restart.click();
+		});
+		
+		function generateImage() {
+			var img;
+			<!-- 利用亂數產出左側圖片位置 -->
+			for (var i = 0; i < numberOfLogos; i++) {
+				top = (Math.random() * (divHeight - imgHeight + 1)) + 'px';
+				left = (Math.random() * (divWeidth - imgWeidth + 1)) + 'px';
+			}
+			<!-- 複製至右側，並將最後一張圖刪除(此位置左側之圖即為答案) -->
+			<!-- 於答案之圖案上綁定成功(nextLevel)事件 -->
+			<!-- 於左側區塊綁定失敗(gameover)事件 -->
+				
+		}
+		
+		function nextLevel(event) {
+		}
+		
+		function gameover(event) {
+		}
+	</script>
+</head>
+<body>
+	<div class="container2">
+		<div class="content">
+			<p>請產出一個左右找碴的小遊戲，請選出左側多餘的那張logo(使用Javascript或JQuery皆可以)
+				<li>初始顯示兩張圖片於左側，右側一張</li>
+				<li>請於左側選擇多出來的那張圖片</li>
+				<li>選擇正確，兩側圖片各增加一張，且重新產出圖片新位置，繼續遊戲</li>
+				<li>選擇錯誤，跳出Game over!訊息，並停止遊戲</li>
+                <blockquote>
+                    Hint:
+					<br /><b>JQuery</b> - add()、children()、clone()、append()、last()、remove()、click()、empty()、unbind()
+					<br /><b>Javascript</b> - getElementById、createElement、appendChild、cloneNode、lastChild、removeChild、onclick、hasChildNodes
+                </blockquote>
+			</p>
+			<input type="button" id="restart" value="Restart"/> 
+			<p>
+				<div id="leftSide"></div>
+				<div id="rightSide"></div>
+			</p>
+		</div>
+	</div>
+</body>
+</html>

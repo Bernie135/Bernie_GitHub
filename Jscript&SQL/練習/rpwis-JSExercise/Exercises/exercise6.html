@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+	<link href="../Style/style.css" rel="stylesheet" type="text/css" />
+	<script src="../Scripts/jquery-2.1.4.js"></script>
+	<style type="text/css">
+		#tabnav {
+		    background:#d5d5d5;
+		    border-bottom:1px solid #333;
+		    padding-bottom:3px;
+		}
+		 
+		#tabnav ul {
+		    padding:12px 0px 5px 0px;
+		    margin:5px 0px 5px 0px;
+		    list-style:none;
+		    background:#f1f1f1;
+		    border-bottom:1px solid #999;
+		}
+		 
+		#tabnav ul li {
+		    display:inline;
+		    margin-left:10px;
+		}
+		 
+		#tabnav ul li a {
+		    background:#fff;
+		    padding:5px 10px 5px 10px;
+		    border:1px solid #999;
+		    font-size:12px;
+		}
+		 
+		#tabnav ul li a:hover {
+		    background:#ccc;
+		}
+		 
+		#tabnav ul li a.here {
+		    background:#d5d5d5;
+		    padding:5px 10px 5px 10px;
+		    border-top:1px solid #999;
+		    border-left:1px solid #999;
+		    border-right:1px solid #999;
+		    border-bottom:1px solid #d5d5d5;
+		}
+		 
+		#tabnav ul li a.here:hover {
+		    background:#d5d5d5;
+		}
+	</style>
+<script>
+	const source1 = "http://opendata2.epa.gov.tw/UV/UV.json";
+	const source2 = "https://opendata.cwb.gov.tw/dist/opendata-swagger.html#/%E8%A7%80%E6%B8%AC/get_v1_rest_datastore_O_A0004_001";
+	$(document).ready(function(){
+		$("a").click(function(){
+			if($(this).data("info")==1){
+				$.ajax({
+					type: "GET",
+					url: source1,
+					dataType: "json",
+					success: function (response){
+						const charge1 = [];
+						charge1.push(...response);
+						showUVIData(charge1);
+					},
+				})
+			}else if($(this).data("info")==2){
+				$.ajax({
+					type: "GET",
+					url: source2,
+					dataType: "json",
+					success: function (response){
+						const charge2 = [];
+						charge2.push(...response);
+						showWeatherData(charge2);
+					},
+					error: function(error1){
+						alert("fail")
+					}
+				})
+			}else if($(this).data("info")==3){
+				$.ajax({
+					type: "GET",
+					url: source2,
+					dataType: "json",
+					success: function (response){
+						const charge2 = [];
+						charge2.push(...response);
+						showWeatherData(charge2);
+					},
+					error: function(error1){
+						$("#content").empty().append("fail to get data");
+					}
+				})
+			}
+		});
+	});
+
+	function showUVIData(list) {
+		var cartList = "";
+			for (let i = 0; i < list.length; i++) {
+				cartList += '<li>' + list[i]["County"]+':' + list[i]["SiteName"]+ '，uvi - ' + list[i]["UVI"] + '<li>';
+			}
+		$("#content").empty().append(cartList);
+	}
+
+	function showWeatherData(list) {
+		alert(list)
+	}
+
+</script>
+</head>
+<body>
+	<div class="container2">
+		<div class="content">
+	        <p>
+	            點選不同頁籤後，取得該資料並整理後呈現於下方框框內
+	            <li>紫外線即時監測資料：請列出所有觀測站(SiteName)的UVI(UVI)資訊與其所屬縣市(County)</li>
+	            <li>即時天氣資料：請取得能見度(Visibility)大於20的地區</li>
+	            <li>Show Error：故意製造呼叫ajax失敗狀態，顯示「fail to get data」</li>
+	            <br />
+	            例如，紫外線即時監測資料的分頁：<br />
+	            嘉義市:嘉義，UVI - 7.14<br />
+				臺中市:臺中，UVI - 6.16<br />
+	            <blockquote>
+	            	Hint: <a target="_blank" href="https://www.w3schools.com/jquery/jquery_ref_ajax.asp">Ajax</a>
+	            	、<a target="_blank" href="https://zh.wikipedia.org/wiki/JSON">Json</a>
+	            	、<a target="_blank" href="http://api.jquery.com/jquery.grep/">Jquery.grep</a>
+	            </blockquote>
+	        </p>
+	        <p>
+		        <div id="tabnav" style="width:500px">
+		            <ul class="tabs">
+		                <li><a href="#content" value="http://opendata2.epa.gov.tw/UV/UV.json" data-info="1">紫外線即時監測資料</a></li>
+		                <li><a href="#content" value="http://opendata.epa.gov.tw/ws/Data/ATM00698/?$format=json&callback=?" data-info="2">即時天氣資料</a></li>
+		                <li><a href="#content" value="http://www.google.com/" data-info="3">Show Error</a></li>
+		            </ul>
+		        </div>	
+		        <div id="content">
+		            
+		        </div>
+        	</p>
+		</div>
+	</div>
+</body>
+</html>

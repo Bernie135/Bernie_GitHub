@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+	<link rel="stylesheet" type="text/css" href="../Style/style.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../Scripts/jquery-ui-1.12.1/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../Scripts/DataTables-1.10.24/media/css/jquery.dataTables.min.css" />
+	<script src="../Scripts/jquery-2.1.4.js"></script>
+	<script src="../Scripts/DataTables-1.10.24/media/js/jquery.dataTables.min.js" type="text/javascript"></script>
+	<script src="../Scripts/jquery-ui-1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+	<script>
+		var mydata = [];
+		$(document).ready(function(){
+			if (localStorage.getItem("data")) {
+				mydata = JSON.parse(localStorage.getItem("data"));
+			}
+			$('#dataTables_id').DataTable({
+				"data": mydata,
+				"columns": [
+					{data: 'id', title:"會員編號"},
+					{data: 'name', title:"會員姓名"},
+					{data: 'passwd', title:"會員密碼"},
+					{data: 'sex', title:"性別"},
+					{data: 'birth', title:"出生日期"},
+					{data: 'phone', title:"手機號碼"},
+					{data: 'email', title:"電子郵件"},
+				],
+				
+			});
+			
+			
+			//新增資料
+			$("#add_data").click(function(){
+				let newItem ={
+					id:null,
+					name:"bernie",
+					passwd:"1234",
+					sex:"M",
+					birth:"2000/04/24",
+					phone:"0918800715",
+					email:"bernie@test.com",
+				};
+				mydata.push(newItem);
+				localStorage.setItem("data", JSON.stringify(mydata));
+				location.reload()
+			});
+			
+			//清除資料
+			$("#clear_data").click(function(){
+				
+			});
+			
+			//編輯資料
+			$("#dataTables_id").click(function(){
+				
+			});
+			
+			$("#edit_data").click(function(){
+			
+			});
+			
+			//刪除資料
+			$("#del_data").click(function(){
+				mydata.splice(0,1);
+				localStorage.setItem("data", JSON.stringify(mydata));
+				history.go(0);
+			});
+		});  
+	</script>
+</head>
+<body>
+	<div class="container2">
+		<div class="content">
+	        <p>
+	            使用DataTables實作一套打會員資料系統，可以新增、修改、刪除會員。<br/>
+	            一位會員會含有以下資訊：
+	            <li>會員編號[id] - 數字自動增長</li>
+	            <li>會員姓名[name](12) - 英文開頭、後面接英文/數字/_</li>
+	            <li>會員密碼[passwd](6-12) - 密文顯示，英文/數字，須提供密碼確認欄位再次輸入</li>
+				<li>性別[gender] - 下拉式選單選取，預設「請選擇」</li>
+	            <li>出生日期[birth](YYYY/MM/DD) - 點選編輯框跳出小月曆，點選一個日期後會自動出現在該欄位上</li>
+	            <li>手機號碼[phone](10) - 09xxxxxxxx</li>
+	            <li>電子郵件[email](70) - '@'前至少一個char, '@'後至少一個'.', 且'.'前後至少需一個char. 只能有一個@</li>
+				其餘規則：
+				<li>當一個欄位字數已滿，則游標自動跳到下一欄位</li>
+				<li>點選Clear Data後所有欄位回歸預設值</li>
+				<li>填寫完畢後點選Add Data，經過驗證(驗證規則如上)後無誤則新增一筆資料進DataTables</li>
+				<li>若資料有誤，則跳出一個alert box並自動將游標移至錯誤的欄位</li>
+	            <blockquote>Reference: 
+					<a target="_blank" href="https://datatables.net/">DataTables</a>
+					、<a target="_blank" href="http://jqueryui.com/demos/datepicker/">Datepicker</a>
+					、<a target="_blank" href="https://www.w3schools.com/js/js_popup.asp">Alert</a>
+					、<a target="_blank" href="https://zh.wikipedia.org/wiki/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">Regex</a>
+				</blockquote>
+	        </p>
+	        
+	        <p>
+	            <table id="dataTables_id">
+				
+				</table>
+	        </p>
+	        <p>
+				<input type="button" id="add_data" value="Add Data" />
+				<input type="button" id="clear_data" value="Clear Data" />
+				<input type="button" id="edit_data" value="Edit Selected" />
+				<input type="button" id="del_data" value="Delete Selected" />
+	        </p>
+		
+	        <p>
+				<table>
+					<tr><td>會員編號：</td><td><input type="text" /></td></tr>
+					<tr><td>會員姓名：</td><td><input type="text" /></td></tr>
+					<tr><td>會員密碼：</td><td><input type="text" /></td></tr>
+					<tr><td>確認密碼：</td><td><input type="text" /></td></tr>
+					<tr><td>性別：</td>
+						<td>
+							<select>
+							<option>請選擇</option>
+							</select>
+						</td>
+					</tr>
+					<tr><td>出生日期：</td><td><input type="text" /></td></tr>
+					<tr><td>手機號碼：</td><td><input type="text" /></td></tr>
+					<tr><td>電子郵件：</td><td><input type="text" /></td></tr>
+				</table>
+	        </p>
+		</div>
+	</div>
+</body>
+</html>

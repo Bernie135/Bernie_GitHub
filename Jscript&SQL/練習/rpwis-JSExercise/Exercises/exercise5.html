@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+	<link href="../Style/style.css" rel="stylesheet" type="text/css" />
+	<script src="../Scripts/jquery-2.1.4.js"></script>
+	<style type="text/css">
+		.slide_button_left {
+			position:absolute;
+			top:50%;
+			left:0%;
+			transform:translate(0%,-50%);
+			-ms-transform:translate(-0%,-50%);
+		}
+		.slide_button_right {
+			position:absolute;
+			top:50%;
+			right:0%;
+			transform:translate(0%,-50%);
+			-ms-transform:translate(0%,-50%);
+		}
+		.slide_button{
+			border:none;
+			display:inline-block;
+			padding:8px 16px;
+			vertical-align:middle;
+			overflow:hidden;
+			text-decoration:none;
+			color:#fff!important;
+			background-color:#000!important;
+			text-align:center;
+			cursor:pointer;
+			white-space:nowrap;
+		}
+		.slide_button:hover {
+			color:#000!important;
+			background-color:#ccc!important;
+		}
+		.image_container{
+			position:relative;
+			width: 600px;
+			height: 400px;
+		}
+		.image_container:hover {
+			display:inline-block;
+		}
+	</style>
+
+	<script type="text/javascript">
+		let timeout;
+		var i = 0;
+		var images = [];
+		var time = 2000;
+		$(document).ready(function(){
+			images[0] = "../Images/slideImage1.jpeg";
+			images[1] = "../Images/slideImage2.jpeg";
+			images[2] = "../Images/slideImage3.jpeg";
+			images[3] = "../Images/slideImage4.jpeg";
+			images[4] = "../Images/slideImage5.jpeg";
+			showDivs();
+		});
+
+		function plusDivs(n) {
+			clearTimeout(timeout);
+			showDivs(n);
+		}
+
+		function showDivs(num) {
+			/*document.mySlides.src = images[i];*/
+			if(num == undefined || num == 1 ){
+				if(i < images.length - 1){
+					i++;
+					document.mySlides.src = images[i];
+				}else{
+					i=0;
+					document.mySlides.src = images[i];
+				}
+			}else if(num == -1){
+				if(i ==0 ){
+					i=4;
+					document.mySlides.src = images[i];
+				}else{
+					i--;
+					document.mySlides.src = images[i];
+				}
+			}
+			timeout = setTimeout("showDivs()",time);
+		}
+
+		function setTimer(stop) {
+			if(stop == 1){
+				clearTimeout(timeout);
+			}else{
+				timeout = setTimeout("showDivs()",time);
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="container2">
+		<div class="content">
+	        <p>
+	            下面為一個廣告區塊。有兩種狀態：
+	            <li>每隔5秒自動更新廣告</li>
+	            <li>當點擊左右按鈕時變換對應的廣告內容</li>
+	            <li>當滑鼠停留在廣告上時，暫停自動更新</li>
+	            <li>當滑鼠離開廣告上時，重新啟動自動更新</li>
+	            <blockquote>
+	            	Hint: <a target="_blank" href="https://www.w3schools.com/w3css/w3css_slideshow.asp">Slideshow</a>
+	            	、<a target="_blank" href="https://www.w3schools.com/jsref/met_win_settimeout.asp">setTimeout</a>
+	            </blockquote>
+	        </p>
+	        <div class="image_container">
+		        <img name = "mySlides" class="mySlides" src="../Images/slideImage1.jpeg" style="width:100%" onmouseover="setTimer(true)" onmouseout="setTimer(false)">
+
+				<button class="slide_button slide_button_left" onclick="plusDivs(-1)">&#10094;</button>
+				<button class="slide_button slide_button_right" onclick="plusDivs(1)">&#10095;</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

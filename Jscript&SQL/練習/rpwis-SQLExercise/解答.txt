@@ -1,0 +1,79 @@
+Q1:
+SELECT id,code,name FROM rptest.departments;
+
+Q2:
+SELECT name FROM rptest.employees where gender='M' and address 
+is not null;
+
+Q3:
+SELECT name FROM rptest.employees where name like '林%%' or  name like '%文%';
+
+Q4:
+SELECT * FROM rptest.training where  type in ('A','C') order by type; 
+
+Q5:
+SELECT name FROM rptest.departments AS A where not exists (select * from rptest.employees as B where A.id = B.DEPARTMENTID) ;
+
+Q6:
+SELECT distinct TYPE FROM rptest.training;
+
+Q7:
+SELECT DEPARTMENTID,count(id) as CNT  FROM rptest.employees group by DEPARTMENTID;
+
+Q8:
+SELECT DEPARTMENTID FROM rptest.employees group by DEPARTMENTID having count(DEPARTMENTID) > 10;
+
+Q9:
+SELECT EMPLOYEEID,sum(GRADE) as Grade ,count(EMPLOYEEID) as CNT  ,round(sum(GRADE)/count(EMPLOYEEID),2) as CAL ,avg(GRADE) as AVGRADE 
+from rptest.training group by EMPLOYEEID order by avg(GRADE);
+
+Q10:
+SELECT  rptest.employees.name as Name, rptest.departments.NAME as NAME 
+from rptest.employees 
+inner join rptest.departments on rptest.employees.DEPARTMENTID=rptest.departments.ID
+where MANAGERID is null;
+
+Q11:
+SELECT rptest.departments.name as NAME,rptest.employees.name 
+from rptest.departments 
+LEFT JOIN rptest.employees on rptest.employees.DEPARTMENTID = rptest.departments.ID 
+where rptest.employees.MANAGERID is null;
+
+Q12:
+SELECT b1.CODE,b1.name,c1.id,c1.name as name,c2.NAME as Name 
+from rptest.employees as c1
+inner join rptest.departments as b1 on c1.DEPARTMENTID= b1.ID
+left join rptest.employees as c2 on c1.MANAGERID=c2.ID
+ORDER BY b1.CODE asc , c2.id desc;
+
+Q13:
+select 
+	A.name, 
+    case 
+		when A.ADDRESS = ''
+			then '無資料'
+		else 
+			A.ADDRESS
+	end as 'ADDRESS'
+from 
+	rptest.employees as A
+where
+	A.name like '王%' and 
+		exists(select rptest.training.employeeID
+			from rptest.training
+			where A.ID = rptest.training.employeeID) 
+	or
+	A.ADDRESS like '台北市%' and
+		not exists(select rptest.training.employeeID
+			from rptest.training
+			where A.ID = rptest.training.employeeID)
+
+Q14:
+
+select NAME,  GENDER,BIRTHDATE
+from rptest.employees as c1,(select DEPARTMENTID FROM rptest.employees group by DEPARTMENTID having count(DEPARTMENTID) > 8) as c2 
+where c1.DEPARTMENTID= c2.DEPARTMENTID and c1.MANAGERID <> 5 and year(BIRTHDATE) > 1989
+
+Q15:
+
+

@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>RPWIS Js Exersices</title>
+    <link href="Style/style.css" rel="stylesheet" type="text/css" />
+	<script src="Scripts/jquery-2.1.4.js"></script>
+	<script src="Scripts/JsExercise.js"></script>
+	<script src="exerciseConfig.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var tester = new JsExercise(exerciseConfig, $('#exerciseSidebar'), $('#exerciseTitle'), $('#exerciseContainer'));
+			$('#E0').click();
+        });
+    </script>
+</head>
+<body>
+<div class="header">
+  <div class="header_interior"><img src="Style/images/logo.png" alt="Logo" style="float:left; margin-right:10px;" /> 
+  <h1 class="title">RPWIS Javascript / Jquery / Ajax / Json Exersices</h1></div>
+</div>
+<div class="content_body">
+    <div class="content_interior">
+		<div class="left_column">
+			<div class="navigation">
+				<ul class="markermenu" id='exerciseSidebar'></ul> 
+			</div>
+            <div class="navigationbtm">
+            </div>
+		</div>
+		<div class="right_column">
+			<h2 id='exerciseTitle'></h2>
+			<hr />
+			<div id="exerciseContainer"></div>
+		</div>
+	</div>
+	<br clear="all" />
+</div>
+<div class="footer">
+    <div class="footer-inner">
+        <div style="text-align:center;">
+            Copyright © 2021 RPWIS
+            <!-- Please don't remove --><!--Designed by: <a href="http://www.allfinancedirectory.com/">Finance Directory</a> --><!-- Thanks Again --> 
+        </div>
+    </div>
+</div>
+</body>
+</html>

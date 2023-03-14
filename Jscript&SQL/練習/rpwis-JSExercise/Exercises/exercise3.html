@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+    <title>Exercise 1 - Taiwan Railway Information</title>
+    <link href="../Style/style.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/jquery-2.1.4.js"></script>
+    <script type="text/javascript">
+        function showTime(){
+			var d = new Date();
+			var yyyy = d.getFullYear();
+			var MM = d.getMonth()+1;
+			var DD = d.getDate();
+			var hh = d.getHours();
+			var mm = d.getMinutes();
+			var ss = d.getSeconds();
+			document.getElementById("time").innerHTML= "現在時間："+ yyyy + "-" + MM + "-" + DD + " " + hh + ":" + mm + ":" + ss;
+        }
+
+    	function resetAlarm(){	//貪睡
+			timeout = setTimeout(conf, 10000);
+    	}
+		function conf(){
+				if (confirm("鬧鐘響鈴")) {
+					resetAlarm();
+				} else {
+					alert( "取消鬧鐘");
+					clearTimeout(timeout);
+				}
+		}
+		let timeout;
+    	function setAlarm(){	//開啟鬧鐘
+			var Hr = $('#hr option:selected').val();
+			var Min = $('#min option:selected').val();
+			var Sec = $('#sec option:selected').val();
+			var d = new Date(); // 必須new一個function Date() 才能拿取裡面的函數
+			var hh = d.getHours();
+			var mm = d.getMinutes();
+			var ss = d.getSeconds();
+			var totalSec = [(Hr-hh)*3600+(Min-mm)*60+(Sec-ss)]*1000;
+			timeout = setTimeout(conf, totalSec);	
+		}
+		
+        $(document).ready(function() {
+            //call this function to show the time of one Date() object.
+			var myVar =	setInterval(showTime,10);
+            //add the number to time select menu.
+			str = "<option>請選擇</option>";
+            str1 ="<option>請選擇</option>";
+            for(i=1;i<25;i++){
+				str+="<option>"+ i +"</option>";
+			}
+			for(i=1;i<60;i++){
+				str1+="<option>"+ i +"</option>";
+			}
+			document.getElementById("hr").innerHTML = str;
+            document.getElementById("min").innerHTML = str1;
+            document.getElementById("sec").innerHTML = str1;
+        });
+    </script>
+</head>
+<body>
+    <div class="container2">
+		<div class="content">
+            <p>
+                實作一個鬧鐘，時間格式: YYYY-MM-DD HH:MM:SS (必須是動態時鐘)，由下拉式選單(幾時幾分幾秒)來訂鬧鐘。<br/>
+                <li>鬧鈴響時會跳出一個confirm box</li>
+                <li>點選cancel來取消鬧鈴</li>
+                <li>若點選OK，則10秒鐘後鬧鈴會再響，步驟從頭開始</li>
+                <blockquote>
+                    Hint: 使用<a target="_blank" href="http://www.w3schools.com/jsref/jsref_obj_date.asp">Date()</a>
+                    及<a target="_blank" href="http://www.w3schools.com/js/js_timing.asp">Timing Events</a>
+                </blockquote>
+            </p>
+            <p id="time">
+            </p>
+            <p>
+                <form>設定鬧鈴: 
+                    <select id="hr"></select>
+                    :
+                    <select id="min"></select>
+                    :
+                    <select id="sec"></select>
+                    &nbsp;
+                    <input type="button" value="確定" onClick="setAlarm()">
+                </form>
+            </p>
+    	</div>
+    </div>
+</body>
+</html>

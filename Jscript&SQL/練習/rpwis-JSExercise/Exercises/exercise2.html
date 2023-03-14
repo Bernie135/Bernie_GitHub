@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1"/>
+    <link href="../Style/style.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/jquery-2.1.4.js"></script>
+    <script type="text/javascript">
+        var list1 = new Array();
+        var list2 = new Array();
+        
+        //test data
+        list1[0] = "test1-1";
+        list1[1] = "test1-2";
+        list1[2] = "test1-3";
+        list1[3] = "test1-4";
+        list1[4] = "test1-5";
+        list1[5] = "test1-6";
+        list2[0] = "test2-1";
+        list2[1] = "test2-2";
+        list2[2] = "test2-3";
+        
+        $(document).ready(function(){
+            //add two array to select menu
+            str = "";
+            for (i = 0; i < list1.length; i++){
+                str += "<option>" + list1[i] + "</option>";
+            }
+            document.getElementById("list1").innerHTML= str;
+            str = "";
+            for (i = 0; i < list2.length; i++){
+                str += "<option>" + list2[i] + "</option>";
+            }
+            document.getElementById("list2").innerHTML= str;
+        });
+    	
+    	function del(x){
+			if(x===1){
+				$('#list1 option:selected').remove();
+			}else{
+				$('#list2 option:selected').remove();
+			}
+    	}
+    	
+    	function add(x){
+			if(x===1){
+				var txt1 = $('#input1').val();
+				if(txt1 !==''){
+					$('#list1').append("<option>"+txt1+"</option>;");
+				}
+			}else{
+				var txt2 = $('#input2').val();
+				if(txt2 !==''){
+					$('#list2').append("<option>"+txt2+"</option>;");
+				}
+			}
+    	}
+    	
+    	function move(x){
+		 if(x==1){
+			var txt1 = $('#list1 option:selected').val();
+			if(typeof(txt1) !=="undefined"){
+				$('#list1 option:selected').remove();
+				$('#list2').append("<option>"+txt1+"</option>;");
+			}
+		 }else{
+			var txt2 = $('#list2 option:selected').val();
+			if(typeof(txt2) !=="undefined"){
+				$('#list2 option:selected').remove();
+				$('#list1').append("<option>"+txt2+"</option>;");
+			}
+			
+		 }
+
+    	}
+    </script>
+</head>
+<body>
+    <div class="container2">
+		<div class="content">
+            <p>
+                以下兩個選單中的資料可互相移動，且可以自行新增/刪除資料。
+                <blockquote>Hint: 可以不用對Array進行存取</blockquote>
+            </p>
+            
+            <p>
+                <table>
+                    <tr align="center">
+                        <td>
+                            <select id="list1" size="10" style="width:200px">
+                                
+                            </select>
+                        </td>
+                        <td width="140px">
+                            <input type="button" style="width:100px" onClick="move(1)" value="往右移動>>"> <br/><br/><br/>
+                            <input type="button" style="width:100px" onClick="move(2)" value="<<往左移動">
+                        </td>
+                        <td>
+                            <select id="list2" size="10" style="width:200px">
+                            　   
+                            </select>
+                        </td>
+                    </tr>
+                    <tr height="50px" align="center">
+                        <td>
+                            <input id="del1" type="button" style="width:50px" onClick="del(1);" value="刪除">
+                        <td>
+                        <td>
+                            <input id="del2" type="button" style="width:50px" onClick="del(2);" value="刪除">
+                        <td>
+                    </tr>
+                    <tr align="center">
+                        <td>
+                            <input id="input1" type="text" style="width:100px">
+                            <input id="add1" type="button" style="width:50px" onClick="add(1);" value="新增">
+                        <td>
+                        <td>
+                            <input id="input2" type="text" style="width:100px">
+                            <input id="add2" type="button" style="width:50px" onClick="add(2);" value="新增">
+                        <td>
+                    </tr>
+                </table>        
+            </p>
+	   </div>
+	</div>
+</body>
+</html>

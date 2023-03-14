@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+	<link href="../Style/style.css" rel="stylesheet" type="text/css" />
+	<script src="../Scripts/jquery-2.1.4.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#each").click(function(){
+				<!-- 請使用each方法 -->
+			});
+			
+			$("#first").click(function(){
+				<!-- 請使用first方法 -->
+			});
+			
+			$("#last").click(function(){
+				<!-- 請使用last方法 -->
+			});
+			
+			$("#odd").click(function(){
+				<!-- 請使用filter方法 -->
+			});
+			
+			$("#even").click(function(){
+				<!-- 請使用filter方法 -->
+			});
+			
+			$("#eq").click(function(){
+				<!-- 請使用eq方法 -->
+			});
+			
+			$("#prev").click(function(){
+				<!-- 請使用prev方法 -->
+			});
+			
+			$("#prevAll").click(function(){
+				<!-- 請使用prevAll方法 -->
+			});
+			
+			$("#next").click(function(){
+				<!-- 請使用next方法 -->
+			});
+			
+			$("#andSelf").click(function(){
+				<!-- 請使用andSelf方法 -->
+			});
+			
+			$("#not").click(function(){
+				<!-- 請使用not方法 -->
+			});
+			
+			$("#slice").click(function(){
+				<!-- 請使用slice方法 -->
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="container2">
+		<div class="content">
+			<p>請根據按鈕規則和jquery Traversing讓清單項目變色<br />
+				(請注意:HTML不可更改，直接寫script的部分，且按鈕的方法是有限制的)
+			</p>
+			<ul>
+		        <li>test1</li>
+	        	<li>test2</li>
+				<li>test3</li>
+				<li>test4</li>
+				<li>test5</li>
+				<li>test6</li>
+			</ul>
+			<br />
+			<select id="color">
+				<option selected="selected" value=""> color </option>
+				<option value="Black" style="color:Black">Black</option>
+				<option value="Red" style="color:Red">Red</option>
+				<option value="White" style="color:White">White</option>
+				<option value="Grey" style="color:Grey"><p>Grey</option>
+				<option value="Orange" style="color:Orange">Orange</option>
+				<option value="Maroon" style="color:Maroon">Maroon</option>
+				<option value="Green" style="color:Green">Green</option>
+				<option value="Olive" style="color:Olive">Olive</option>
+				<option value="Cyan" style="color:Cyan">Cyan</option>
+				<option value="Blue" style="color:Blue">Blue</option>
+			</select>
+			<br />
+			<input type="button" id="each" value="全部變色"/><!-- 請使用each方法 -->
+			<input type="button" id="first" value="第一個變色"/><!-- 請使用first方法 -->
+			<input type="button" id="last" value="最後一個變色"/><!-- 請使用last方法 -->
+			<input type="button" id="odd" value="偶數變色"/><!-- 請使用filter方法 -->
+			<input type="button" id="even" value="基數變色"/>
+			<br />
+			<br />
+			變數: X 為<select id="x">
+				<option selected="selected" value=""> x </option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+			</select>
+			<br />
+			<input type="button" id="eq" value="第X個變色"/> <!-- 請使用eq方法 -->
+			<input type="button" id="prev" value="X前一個變色"/> <!-- 請使用prev方法 -->
+			<input type="button" id="prevAll" value="X前全部變色"/> <!-- 請使用prevAll方法 -->
+			<input type="button" id="next" value="X後一個變色"/> <!-- 請使用next方法 -->
+			<br />
+			<input type="button" id="andSelf" value="X和後一個變色"/><!-- 請使用andSelf方法 -->
+			<input type="button" id="not" value="不含X其他變色"/><!-- 請使用not方法 -->
+			<input type="button" id="slice" value="第一個到X變色"/><!-- 請使用slice方法 -->
+		</div>
+	</div>
+</body>
+</html>
