@@ -1,0 +1,83 @@
+<!-- hello_world.html -->
+<meta charset="utf-8">
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome</title>
+        <script type="text/javascript" src="/static/jquery-3.6.0.min.js"></script>
+        <style>
+            html{
+                background-color: aliceblue;
+            }
+            .top{
+                background-color:white;
+                width:100%;
+                white-space:nowrap;
+            }
+            .down_one{
+                margin:20px 0px 0px 400px;
+                box-shadow:3px 3px 3px 3px #cccccc;
+                width: 300;
+                height: 300;
+                background-color: white;
+            }
+            .down_two{
+                margin:20px 0px 0px 50px;
+                box-shadow:3px 3px 3px 3px #cccccc;
+                width: 300;
+                height: 300;
+                background-color: white;
+            }
+            .lable{
+                display: flex;
+            }
+            .lable_top{
+                background-color:rgb(87, 88, 88);
+                width:300;
+                height:50;
+                text-align: center;
+                line-height:50px;
+                font-size: 25;
+                color: white;
+            }
+            .lable_down{
+                text-align: center;
+                line-height:200px;
+                font-size: 80;
+            }
+            .word{
+                margin:0px 0px 0px 400px; 
+            }
+        </style>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#testd').click(function(){
+                    window.location.href="http://127.0.0.1:8000/graph/"
+                });
+                $('#back').click(function(){
+                    window.location.href="http://127.0.0.1:8000/index/"
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="top">
+        <h1 align="center">
+        歡迎來到生理數據分析網站
+        <button class="testd" id="testd">歷史資料</button>
+        <button class="back" id="back">返回登入頁面</button>
+        </h1>
+        <hr size="3px" style="background-color:cadetblue" align="center" width="100%">
+        </div>
+        <h3 class="word">{{p.0.name}}最新狀態{{p.0.testdate}}<br>{{p.0.name}}您的{{message1}}<br>{{message2}}、{{message3}}</h3>
+        <div class="lable">
+            <div class="down_one" ><div class="lable_top">體重</div><div class="lable_down">{{p.0.weight}}KG</div></div>
+            <div class="down_two" ><div class="lable_top">體溫</div><div class="lable_down">{{p.0.temperature}}度</div></div>
+        </div>
+        <div class="lable">
+            <div class="down_one"><div class="lable_top">血壓</div><div class="lable_down">{{p.0.pressures}}/{{p.0.pressured}}</div></div>
+            <div class="down_two"><div class="lable_top">心跳</div><div class="lable_down">{{p.0.heartbeat}}下</div></div>
+        </div>
+            
+    </body>                                        
+</html>

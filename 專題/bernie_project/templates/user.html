@@ -1,0 +1,83 @@
+<meta charset="utf-8">
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script type="text/javascript" src="/static/jquery-3.6.0.min.js"></script>
+        <style type="">
+            html{
+                background-color: aliceblue;
+            }
+        </style>
+        <script type="text/javascript">
+
+            var token = "{{ csrf_token }}"
+            $.ajaxSetup({
+                headers: { 'X-CSRFTOKEN': `${token}` }, // 這裡是headers，不是data
+            });
+
+            $(document).ready(function(){
+                $('#back').click(function(){
+                    window.location.href="http://127.0.0.1:8000/index/"
+                });
+            });      
+        function dele(x){
+            $.ajax({
+                url:'http://127.0.0.1:8000/dele/',
+                type:'POST',
+                data:{
+                    "IC" : x
+                },
+                success:function(){ 
+                    window.location.href="http://127.0.0.1:8000/dele/"}  
+            });
+            
+        }
+        function modify(x){
+            $.ajax({
+                url:'http://127.0.0.1:8000/modify/',
+                type:'POST',
+                data:{
+                    "IC" : x
+                },
+                success:function(){
+                    window.location.href="http://127.0.0.1:8000/modify/"}  
+            });
+        };
+        </script>
+    </head>
+    <body>
+        <h1 align="center">
+            歡迎來到管理者頁面
+            <button class="back" id="back">返回登入頁面</button>
+        </h1>
+        <hr size="3px" style="background-color:cadetblue" align="center" width="100%">
+        <table border='1' align="center">
+            <tr>
+                <td>姓名</td>
+                <td>性別</td>
+                <td>溫度</td>
+                <td>重量</td>
+                <td>收縮壓</td>
+                <td>舒張壓</td>
+                <td>心跳</td>
+                <td>紀錄日期</td>
+                <td>管理</td>
+            </tr>
+            {% for i in p %}
+            <tr>
+                <td>{{ i.name }}</td>
+                <td>{{ i.sex }}</td>
+                <td>{{ i.temperature }}</td>
+                <td>{{ i.weight }}</td>
+                <td>{{ i.pressures }}</td>
+                <td>{{ i.pressured }}</td>
+                <td>{{ i.heartbeat }}</td>
+                <td>{{ i.testdate }}</td>
+                <td><input class="mod" id="mod" type="button"  VALUE="修改" onclick="modify({{i.id}})"><input type="button" id="dele" VALUE="刪除" onclick="dele({{i.id}})"></td>
+            </tr>
+            {% csrf_token %}
+            {% endfor %}
+        </table>
+    </body>                                        
+    </html>
