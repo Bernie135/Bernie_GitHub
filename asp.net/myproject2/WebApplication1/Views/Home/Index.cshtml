@@ -4,33 +4,18 @@
 @* 用MODEL前還必須在View檔案引用MODEL*@
 
 @model WebApplication1.Models.HomeViewModel;
-<div class="text-center">
-    <h1 class="display-4">Welcome@(ViewBag.name)今年@(ViewBag.age)歲</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <!-- Viewdata 和 ViewBag 都是弱型別參數-->
-    這是弱型別-->@ViewData["name"]
-    @*
-    //這是ACTION(iNDEX)傳來的MODEL    
-    *@
-    <p>這是p段落的名字是@(Model.Name)，年齡@(Model.Age)</p>
+<div class="center">
+    <h1>會員登入</h1>
+    <form method="post" asp-action="Index">
+        <label>帳號</label>
+        <input type="text" asp-for="Account" />
+        <br />
+        <label>密碼</label>
+        <input type="text" asp-for="Password" />
+        <br/>
+        <input type="submit" value="登入"/>
+    </form>
+    <input type="button" value="Create" onclick="location.href='@Url.Action("AddMember", "Home")'" />
 </div>
-<input type="text" class=" p-3 mb-2 bg-primary text-white text-uppercase" id="tx">
-<input type="button" class="btn btn-primary" id="btn1" value="按鈕"/>
-@section Scripts{
-    <script> 
-        $(".btn").click(function(){
-            $.ajax({
-                type:"POST",
-                url: "@Url.Action("Postname")",
-                data:{name:"Bernie"},
-                success: function(result){
-                    console.log(result);
-                    $("#tx").val(result);
-                },
-                error: function(req,status,error){
-                    console.log(status);
-                },
-            });
-        });
-    </script>
-}
+
+

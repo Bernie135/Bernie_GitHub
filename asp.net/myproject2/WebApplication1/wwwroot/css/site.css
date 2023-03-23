@@ -13,6 +13,15 @@ html {
   min-height: 100%;
 }
 
+.center {
+    margin: 100px auto;
+    text-align: center;
+    width: 400px;
+    height: 250px;
+    border-style: groove;
+    background-color: #eee;
+}
+
 body {
   margin-bottom: 60px;
 }

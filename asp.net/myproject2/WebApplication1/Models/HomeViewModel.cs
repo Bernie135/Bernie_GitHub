@@ -2,8 +2,8 @@
 {
     public class HomeViewModel
     {
-        public string? Name { get; set; }
+        public string Account { get; set; } = null!;
 
-        public int? Age { get; set; }
+        public string Password { get; set; } = null!;
     }
 }
