@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -9,12 +8,201 @@
     <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
 </head>
 <body>
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="container-fluid ">  
+            <a class="navbar-brand " href="#">首頁</a>
+            <a class="navbar-brand NavigationBar-actionMenu-button " asp-area="" asp-controller="Home" asp-action="Index" data-bs-toggle="modal" data-bs-target="#exampleModal">會員登入</a>
+            <a class="navbar-brand justify-content-end flex-grow-1 pe-3" asp-area="" asp-controller="Product" asp-action="Index">產品</a>
+            <a class="navbar-brand">@ViewBag.name</a>
+            <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart" aria-label="Toggle navigation">
+                <img src="~/lib/data/cart.svg" style="width:0.8cm;height:0.8cm;"/>
+                <span class="badge badge-pill badge-danger">1</span>
+            </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            @**購物車彈跳視窗*@
+            <div class="offcanvas offcanvas-end   bg-white navbar-brand" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="color:black">購物車</h5>
+                    <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <img src="~/lib/data/aespa.jpg" class="img-thumbnail"/>
+                <div id="cart" style="color:black"></div>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="btn btn-primary" >結帳</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary" id="cancel">取消</a>
+                    </li>
+                </ul>
+            </div>
+            @*三條線的彈跳視窗*@
+            <div class="offcanvas offcanvas-end   bg-dark navbar-brand" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Dark offcanvas</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex mt-3" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+    @*會員登入*@
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form method="post" asp-controller="Home" asp-action="Login">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">會員登入</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body form-group">
+                        <label>帳號</label>
+                        <input type="text" name="Account" class="form-control" />
+                        <br />
+                        <label>密碼</label>
+                        <input type="text" name="Password" class="form-control" />
+                        <br />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">登入</button>
+                        <input type="button" class="btn btn-secondary" value="註冊" onclick="location.href='@Url.Action("AddMember", "Home")'" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @*幻燈片輪播*@
+    <div id="carouselExampleIndicators" class="carousel slide bg-dark">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="~/lib/data/LE.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="~/lib/data/NMIXX.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="~/lib/data/IVE.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="~/lib/data/Twice.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next " type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
     <div>
         @RenderBody()
     </div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js">
+    </script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+        <script>
+            var cart = [];
+            $(document).ready(function(){
+                function setCart(){
+                    var cartList = "";
+                    var cartnum = 0 ;
+                    if (localStorage.getItem("cart")) 
+                    {
+                        cart = JSON.parse(localStorage.getItem("cart"));
+                    }
+                    
+                    for (let i = 0; i < cart.length; i++) 
+                    {
+                        cartList += 
+                        '<div class="card w-50">'+ 
+                        '<div class="card-body">'+
+                        '<h5 class="card-title">'+cart[i]["name"]+'</h5>'+
+                        '<p class="card-text">'+cart[i]["price"]+'*'+cart[i]["amount"]+'</p>'+
+                        '</div>'+ 
+                        '</div>';
+                        cartnum += Number(cart[i]["amount"]);
+                    }
+                    $('.badge').html(cartnum);
+                    $("#cart").empty().append(cartList);
+                }
+                setCart();
+                $('.add_cart').click(function () {
+                    let product = $(this).closest(".card-body");
+                    let True = 0;
+                    if (localStorage.getItem("cart")) 
+                    {
+                        cart = JSON.parse(localStorage.getItem("cart"));
+                        for(let i = 0 ;i < cart.length;i++ )
+                        {
+                            if (cart[i]["name"] == product.find(".card-title").text())
+                            {
+                                cart[i]["amount"] = (Number(cart[i]["amount"])+1).toString();
+                                cart.push();
+                                localStorage.setItem("cart", JSON.stringify(cart));
+                                True = 1;
+                            }
+                        }
+                    }
+                    if(True == 0)/*判斷是不是新的項目*/ 
+                    {
+                        let newitem = {
+                        name: product.find(".card-title").text(),
+                        price: $(this).data("price"),
+                        amount: "1",
+                        };
+                        cart.push(newitem);
+                        localStorage.setItem("cart", JSON.stringify(cart));
+                        True = 0;
+                    }
+                    setCart();
+                });
+                $("#cancel").click(function(){
+                    cart = [];
+                    localStorage.removeItem("cart");
+                    setCart();
+                });
+            });
+
+            
+        </script>
 </body>
 </html>

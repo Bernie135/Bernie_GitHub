@@ -1,21 +1,91 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-@* 用MODEL前還必須在View檔案引用MODEL*@
+﻿<div class="navbar navbar-expand-lg bg-body-tertiary " style="margin-top:50px;margin-left:50px;"> 
 
-@model WebApplication1.Models.HomeViewModel;
-<div class="center">
-    <h1>會員登入</h1>
-    <form method="post" asp-action="Index">
-        <label>帳號</label>
-        <input type="text" asp-for="Account" />
-        <br />
-        <label>密碼</label>
-        <input type="text" asp-for="Password" />
-        <br/>
-        <input type="submit" value="登入"/>
-    </form>
-    <input type="button" value="Create" onclick="location.href='@Url.Action("AddMember", "Home")'" />
+    <div class="card" style="width: 18rem; margin-right:50px">
+        <a href="#" class="card-link">
+            <img src="~/lib/data/IVE.jpg" class="card-img-top" alt="...">
+        </a>
+        <div class="card-body">
+            <h5 class="card-title">IVE</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary card-link">查看</a>
+            <a href="#" class="add_cart btn btn-primary card-link" data-price="1000">加入購物車</a>
+        </div>
+    </div>
+
+    <div class="card " style="width: 18rem; margin-right:50px">
+        <a href="#" class="card-link">
+            <img src="~/lib/data/LE.jpg" class="card-img-top" alt="...">
+        </a>
+        <div class="card-body">
+            <h5 class="card-title">LE </h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary card-link">查看</a>
+            <a href="#" class="add_cart btn btn-primary card-link" data-price="1500">加入購物車</a>
+        </div>
+    </div>
+
+    <div class="card " style="width: 18rem; margin-right:50px">
+        <a href="#" class="card-link">
+            <img src="~/lib/data/NMIXX.jpg" class="card-img-top" alt="...">
+        </a>
+        <div class="card-body">
+            <h5 class="card-title">NMIXX </h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary card-link">查看</a>
+            <a href="#" class="add_cart btn btn-primary card-link" data-price="2000">加入購物車</a>
+        </div>
+    </div>
+
+    <div class="card " style="width: 18rem; margin-right:50px">
+        <a href="#" class="card-link">
+            <img src="~/lib/data/Twice.jpg" class="card-img-top" alt="...">
+        </a>
+        <div class="card-body">
+            <h5 class="card-title">Twice </h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary card-link">查看</a>
+            <a href="#" class="add_cart btn btn-primary card-link"data-price="1800">加入購物車</a>
+        </div>
+    </div>
+
+    <div class="card " style="width: 18rem; margin-right:50px">
+        <a href="#" class="card-link">
+            <img src="~/lib/data/aespa.jpg" class="card-img-top" alt="...">
+        </a>
+        <div class="card-body">
+            <h5 class="card-title">aespa</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary card-link">查看</a>
+            <a href="#" class="add_cart btn btn-primary card-link" data-price="1300">加入購物車</a>
+        </div>
+    </div>
+
+    <div class="card " style="width: 18rem; margin-right:50px">
+        <a href="#" class="card-link">
+            <img src="~/lib/data/seventeen.webp" class="card-img-top" alt="...">
+        </a>
+        <div class="card-body">
+            <h5 class="card-title">Seventeen</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary card-link">查看</a>
+            <a href="#" class="add_cart btn btn-primary card-link" data-price="1000">加入購物車</a>
+        </div>
+    </div>
 </div>
+
+<div class=" navbar navbar-expand-lg bg-body-tertiary" style="margin-top:50px;margin-left:50px;">
+    <div class="card " style="width: 18rem; margin-right:50px">
+        <a href="#" class="card-link">
+            <img src="~/lib/data/Gidle.jpg" class="card-img-top" alt="...">
+        </a>
+        <div class="card-body">
+            <h5 class="card-title">(G)l-DLE</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary card-link">查看</a>
+            <a href="#" class="add_cart btn btn-primary card-link" data-price="1000">加入購物車</a>
+        </div>
+    </div>
+</div>
+
 
 

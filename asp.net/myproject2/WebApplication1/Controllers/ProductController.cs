@@ -12,8 +12,9 @@ namespace WebApplication1.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index( string name)
         {
+            ViewBag.name  = name;
             var data = _context.Prodects.ToList();
             var file1 = _context.Files.ToList();
             for (int i = 0; i < data.Count; i++)

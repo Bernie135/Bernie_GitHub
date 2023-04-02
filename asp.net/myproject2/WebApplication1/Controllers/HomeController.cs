@@ -23,15 +23,16 @@ namespace WebApplication1.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Index(HomeViewModel member)
+        public IActionResult Login(HomeViewModel member)
         {
             var data = _context1.Members.Where(d => d.Password == member.Password).Where(d => d.Account == member.Account).ToList();
-            if (data !=null)
+            if (data .Count !=0)
             {
-                return RedirectToAction("Index","Product");
+                return RedirectToAction("Index","Product", new { name = member.Account });
             }
-            return View();
+            return RedirectToAction("Index");
         }
+        
         [HttpPost]
         public JsonResult Postname(string name)
         { 
@@ -50,7 +51,27 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
-
+        [HttpPost]
+        public IActionResult TOAddMember(Member member) 
+        {
+            if (ModelState.IsValid) 
+            {
+                var last = _context1.Members.OrderByDescending(d => d.Id).FirstOrDefault();
+                var product = new Member()
+                {
+                    Id = last.Id + 1,
+                    Name = member.Name,
+                    Account = member.Account,
+                    Password = member.Password,
+                    Email = member.Email    
+                };
+                _context1.Members.Add(product);
+                _context1.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.Msg = "註冊失敗";
+            return View(member);
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
